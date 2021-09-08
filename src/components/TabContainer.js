@@ -17,7 +17,6 @@ function TabContainer({tabs}) {
         <div>
             <h1>Tabs List</h1>
             {tabsList}
-            {/* <TabDisplay /> */}
         </div>
 
     )

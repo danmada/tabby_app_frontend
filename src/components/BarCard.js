@@ -1,16 +1,16 @@
-function BarCard({name}) {
+function BarCard({bar, handleStartTabClick}) {
 
 
 
     
 
-
+    const id = bar.id
 
     return (
         <div>
 
-            <h3>{name}</h3>
-            <button>Start A Tab</button>
+            <h3>{bar.name}</h3>
+            <button onClick={() => handleStartTabClick(id)}>Start A Tab</button>
 
 
         </div>

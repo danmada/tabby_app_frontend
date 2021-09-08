@@ -1,9 +1,9 @@
 import BarCard from "./BarCard"
 
-function BarContainer({bars}) {
+function BarContainer({bars, handleStartTabClick}) {
 
     const barList = bars.map((bar) => (
-        <BarCard key={bar.id} name={bar.name}/>
+        <BarCard key={bar.id} bar={bar} handleStartTabClick={handleStartTabClick}/>
     ))
 
     return (
