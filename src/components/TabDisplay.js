@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
-import DrinksList from "./DrinksList";
+
 
 
 function TabDisplay() {
 const [indTab, setIndTab] = useState([])
 const [drinksList, setDrinksList] = useState([])
 const [barId, setBarId] = useState()
+const [isOpen, setIsOpen] = useState(true)
 const params = useParams()
 
 
@@ -19,6 +20,7 @@ useEffect(() => {
         setBarId(json.bar_id)
         const drinks = json.orders
         setIndTab(drinks)
+        setIsOpen(json)
 
     })
     .catch((err) => {
@@ -52,6 +54,26 @@ function handleAddDrink(e) {
     });
 }
 
+function handleRemoveOrder(e) {
+    console.log(e.target.value)
+    fetch(`http://localhost:3000/orders/${e.target.value}`, {
+    method: "DELETE",
+    })
+}
+
+function handleCloseTabClick() {
+    console.log('I was clicked')
+    fetch(`http://localhost:3000/tabs/${params.id}`, {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            is_open: !isOpen.is_open
+        }),
+    })
+        .then((res) => res.json())
+}
 
 
 
@@ -60,9 +82,15 @@ function handleAddDrink(e) {
         <div>
         <h1>Tab Display</h1>
         <div>
-        {indTab.map((order) => 
+        {isOpen.is_open === false ? <h1>Paid!</h1> :
+        
+        indTab.map((order) => 
+            <div>
             <h4>{order.drink.drink_type} - ${order.drink.price}</h4>
+            <button value={order.id} onClick={handleRemoveOrder}>Remove</button>
+            </div>
         )}
+        <button onClick={handleCloseTabClick}>Close Tab</button>
         <button onClick={handleDisplayDrinks}>Add New Item</button>
         </div>
         {drinksList.map((drink) => {

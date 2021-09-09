@@ -1,8 +1,9 @@
-function BarCard({bar, handleStartTabClick}) {
+function BarCard({ newTab, user, bar, handleStartTabClick}) {
 
 
 
-    
+    console.log(user)
+    console.log(newTab)
 
     const id = bar.id
 

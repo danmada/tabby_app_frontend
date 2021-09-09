@@ -37,8 +37,8 @@ function MainContainer({user}) {
             <Switch>
                 <Route path="/tab/:id" component={() => <TabDisplay />}></Route>
                 <Route path="/customertab/:id" component={() => <CustTabDisplay />}></Route>
-                <Route path="/main" component={() => <CustomerMain user={user} bars={bars}/>}></Route>
-                <Route path="/barmain" component={() => <BarMain tabs={tabs}/>}></Route>
+                <Route path="/main" component={() => <CustomerMain user={user} bars={bars} tabsData={tabs}/>}></Route>
+                <Route path="/barmain/:id" component={() => <BarMain tabs={tabs}/>}></Route>
                 <Route path="/" component={() => <Login />}></Route>
             </Switch>
 

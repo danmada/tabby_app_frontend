@@ -2,14 +2,14 @@ import { Link, NavLink, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import BarContainer from "./BarContainer"
 
-function CustomerMain({bars, user}) {
+function CustomerMain({ tabsData, bars, user}) {
     const [newTab, setNewTab] = useState([])
 
     const history = useHistory()
 
+    console.log(tabsData)
+
     function handleStartTabClick(id) {
-        console.log(id)
-        console.log(user.id)
         fetch("http://localhost:3000/tabs", {
             method: "POST",
             headers: {
@@ -25,16 +25,12 @@ function CustomerMain({bars, user}) {
             .then((json) => setNewTab(json))
 
             history.push(`/customertab/${newTab.id}`)
-    }
-
-    console.log(newTab)
-
-    
+    } 
 
     return (
         <div>
             <h1>Customer Main</h1>
-            <BarContainer bars={bars} handleStartTabClick={handleStartTabClick}/>
+            <BarContainer tabsData={tabsData} bars={bars} newTab={newTab} user={user} handleStartTabClick={handleStartTabClick}/>
         </div>
     )
 }
