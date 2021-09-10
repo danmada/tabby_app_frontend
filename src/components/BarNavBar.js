@@ -1,23 +1,22 @@
 import styled from "styled-components";
 import { Link, NavLink, useHistory } from "react-router-dom"
 
-function NavBar({ user, onLogout }) {
+function BarNavBar({adminUser, onBarLogout}) {
 
     const history = useHistory()
 
     function handleLogout() {
-        fetch("http://localhost:3000/logout", {
+        fetch("http://localhost:3000/barlogout", {
         method: "DELETE",
-        }).then(() => onLogout());
+        }).then(() => onBarLogout());
         history.push('/')
     }
 
-    console.log(user)
-
+    console.log(adminUser)
 
     return (
         <Header>
-            {user ? (
+            {adminUser ? (
                 <div>
                     <p>Welcome!</p>
                     <button onClick={handleLogout}>Logout</button>
@@ -31,20 +30,13 @@ function NavBar({ user, onLogout }) {
             }
         </Header>
     )
-
 }
-
 
 // Styled Components
 
 const Header = styled.div`
     background-color: orange;
     padding-bottom: 10pt;
-    margin: 0;
 `
 
-
-export default NavBar
-
-
-
+export default BarNavBar

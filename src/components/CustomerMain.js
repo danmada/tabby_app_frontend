@@ -29,7 +29,6 @@ function CustomerMain({ tabsData, bars, user}) {
 
     return (
         <div>
-            <h1>Customer Main</h1>
             <BarContainer tabsData={tabsData} bars={bars} newTab={newTab} user={user} handleStartTabClick={handleStartTabClick}/>
         </div>
     )

@@ -1,59 +1,54 @@
 import { Link, NavLink, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 
-function Login(handleSubmit, user) {
-    // const [username, setUsername] = useState("");
-    // const [user, setUser] = useState(null);
-    // const [errors, setErrors] = useState([])
+function Login({ user, setUser}) {
+    const [username, setUsername] = useState("");
+    const [errors, setErrors] = useState([])
+    const [login, setLogin]  = useState('')
+    const history = useHistory()
 
-    // const history = useHistory()
-    
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     fetch("http://localhost:3000/login", {
-    //         method: "POST",
-    //         headers: {
-    //         "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({ username }),
-    //     })
-    //         .then((res) => res.json())
-    //         .then(json => {
-    //             if(json.error){
-    //                 setErrors(json.error)
-    //             } else {
-    //                 setUser(json)
-    //                 // history.push('/main')
-    //             }
-    //         })
-    //     }
+    function handleCustLogin(e){
+        e.preventDefault()
+        console.log('I was clicked')
+        let API_PATH 
+        login?API_PATH = 'login' : API_PATH = 'customers'
+        fetch(`http://localhost:3000/${API_PATH}`,{
+            method:'POST',
+            credentials: 'include',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({username})
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            if(json.error){
+                setErrors(json.error)
+            }else {
+                setUser(json)
+            }
+        })
+        history.push('/custmainmenu')
+    }
+
         
 
-    //     useEffect(() => {
-    //         fetch("http://localhost:3000/me").then((response) => {
-    //             if (response.ok) {
-    //             response.json().then((user) => setUser(user));
-    //             }
-    //         });
-    //         }, []);
+        console.log(`Login`, user)
 
             
         
     return (
         <div>
-            {/* <h1>Login</h1>
-            <NavLink to="/main">Login as a Customer</NavLink>
-            <form onSubmit={() => handleSubmit(username)}>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <button type="submit">Login</button>
-                </form>
-            <NavLink to="/barmain">Login as a Bar</NavLink>
-            {user ? <h4>Welcome, {user.name}</h4> : <h4>Please login</h4>}
-            {errors ? errors.map(e => <p>{e}</p>) : null} */}
+            <h4>Login</h4>
+            <form onSubmit={handleCustLogin}>
+                <label>
+                    Username
+                    <br/>
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </label>
+                <input type="submit" value="Login!" onClick={()=> setLogin(true)} />
+            </form>
+            <NavLink to="/barlogin">Login as a Bar</NavLink>
+            
             
             
         </div>
