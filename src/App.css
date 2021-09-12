@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+html {
+  background-color: rgb(245, 204, 180);
+}

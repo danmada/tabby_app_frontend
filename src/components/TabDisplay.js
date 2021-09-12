@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
+import AddDrinkDisplay from './AddDrinkDisplay'
 
 
 
@@ -29,7 +30,6 @@ useEffect(() => {
 }, [params.id]);
 
 
-
 function handleDisplayDrinks() {
     fetch(`http://localhost:3000/drinks`)
     .then((res) => res.json())
@@ -39,26 +39,23 @@ function handleDisplayDrinks() {
 
 }
 
-function handleAddDrink(e) {
-    console.log(params.id)
-    console.log(e.target.value)
-    fetch("http://localhost:3000/orders", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        tab_id: params.id,
-        drink_id: e.target.value,
-    }),
-    });
+
+function handleAddNewDrink(newOrder) {
+    setIndTab((indTab) => [...indTab, newOrder])
 }
+
 
 function handleRemoveOrder(e) {
     console.log(e.target.value)
     fetch(`http://localhost:3000/orders/${e.target.value}`, {
     method: "DELETE",
-    })
+    }).then((r) => {
+        if (r.ok) {
+          setIndTab((indTab) =>
+            indTab.filter((order) => order.id != e.target.value)
+          );
+        }
+      });
 }
 
 function handleCloseTabClick() {
@@ -93,15 +90,7 @@ function handleCloseTabClick() {
         <button onClick={handleCloseTabClick}>Close Tab</button>
         <button onClick={handleDisplayDrinks}>Add New Item</button>
         </div>
-        {drinksList.map((drink) => {
-            if (drink.bar_id == barId) {
-                return  <div>
-                            <h4>{drink.drink_type}</h4>
-                            <p>{drink.id}</p>
-                            <button value={drink.id} onClick={handleAddDrink}>Add</button>
-                        </div>
-            } 
-        })}
+        <AddDrinkDisplay onAddOrder={handleAddNewDrink} params={params} barId={barId} drinksList={drinksList}/>
 
         </div>
     )

@@ -21,6 +21,7 @@ function CustTabDisplay() {
 
 
 console.log(params.id)
+console.log('Cust Tab Display', isOpen)
 
 
     function handleCloseTabClick() {
@@ -34,7 +35,12 @@ console.log(params.id)
                 is_open: !isOpen.is_open
             }),
         })
-            .then((res) => res.json())
+            .then((r) => {
+                if (r.ok) {
+                r.json().then((isOpen) => {
+                    setIsOpen(isOpen);
+                });
+            }})
 
     }
 

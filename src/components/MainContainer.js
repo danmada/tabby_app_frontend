@@ -33,8 +33,8 @@ function MainContainer({user, setUser, adminUser, setAdminUser}) {
         setTabs(json);
         });
     }, []);
- 
-    console.log(user)
+
+
 
     return (
         <div>
