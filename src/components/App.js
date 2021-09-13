@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react"
 import MainContainer from './MainContainer';
 import NavBar from "./NavBar"
 import NavContainer from './NavContainer';
-import Title from './Title';
 import barImg from './assets/bar-background.jpg'
 
 

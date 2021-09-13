@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AddDrinkDisplay from './AddDrinkDisplay'
+import TabTotal from "./TabTotal";
+
 
 
 
@@ -10,10 +12,8 @@ const [indTab, setIndTab] = useState([])
 const [drinksList, setDrinksList] = useState([])
 const [barId, setBarId] = useState()
 const [isOpen, setIsOpen] = useState(true)
-const [total, setTotal] = useState(null)
 const params = useParams()
-
-console.log('price test:', indTab)
+const [getPrice, setGetPrice] = useState()
 
 
 useEffect(() => {
@@ -24,6 +24,7 @@ useEffect(() => {
         const drinks = json.orders
         setIndTab(drinks)
         setIsOpen(json)
+        setGetPrice(drinks)
     })
     .catch((err) => {
         console.log(err);
@@ -43,6 +44,7 @@ function handleDisplayDrinks() {
 
 function handleAddNewDrink(newOrder) {
     setIndTab((indTab) => [...indTab, newOrder])
+    setGetPrice((getPrice) => [...getPrice, newOrder])
 }
 
 
@@ -54,6 +56,9 @@ function handleRemoveOrder(e) {
         if (r.ok) {
         setIndTab((indTab) =>
         indTab.filter((order) => order.id != e.target.value)
+        );
+        setGetPrice((getPrice) =>
+        getPrice.filter((order) => order.id != e.target.value)
         );
     }
     });
@@ -72,6 +77,8 @@ function handleCloseTabClick() {
         .then((res) => res.json())
 }
 
+// console.log('price test:', getPrice)
+
 
     return (
         <div>
@@ -85,6 +92,7 @@ function handleCloseTabClick() {
                     <RemoveBtn value={order.id} onClick={handleRemoveOrder}>❌</RemoveBtn>
                     </div>
                 )}
+                <TabTotal indTab={indTab} getPrice={getPrice}/>
                 <AddNewBtn onClick={handleCloseTabClick}>Close Tab</AddNewBtn>
                 <AddNewBtn onClick={handleDisplayDrinks}>Add New Item</AddNewBtn>
             </div>
