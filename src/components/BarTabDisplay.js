@@ -13,7 +13,7 @@ const [isOpen, setIsOpen] = useState(true)
 const [total, setTotal] = useState(null)
 const params = useParams()
 
-
+console.log('price test:', indTab)
 
 
 useEffect(() => {
@@ -23,8 +23,6 @@ useEffect(() => {
         setBarId(json.bar_id)
         const drinks = json.orders
         setIndTab(drinks)
-        const custData = json
-        showCustOrders(custData)
         setIsOpen(json)
     })
     .catch((err) => {
@@ -33,10 +31,7 @@ useEffect(() => {
 }, [params.id]);
 
 
-console.log('total', total)
-
 function handleDisplayDrinks() {
-    console.log('Hello')
     fetch(`http://localhost:3000/drinks`)
     .then((res) => res.json())
     .then((json) => {
@@ -47,15 +42,12 @@ function handleDisplayDrinks() {
 
 
 function handleAddNewDrink(newOrder) {
-    console.log(indTab)
-    console.log(newOrder)
     setIndTab((indTab) => [...indTab, newOrder])
 }
 
 
 
 function handleRemoveOrder(e) {
-    console.log(e.target.value)
     fetch(`http://localhost:3000/orders/${e.target.value}`, {
     method: "DELETE",
     }).then((r) => {
@@ -68,7 +60,6 @@ function handleRemoveOrder(e) {
 }
 
 function handleCloseTabClick() {
-    console.log('I was clicked')
     fetch(`http://localhost:3000/tabs/${params.id}`, {
         method: "PATCH",
         headers: {
@@ -80,8 +71,6 @@ function handleCloseTabClick() {
     })
         .then((res) => res.json())
 }
-
-
 
 
     return (

@@ -12,8 +12,6 @@ function BarNavBar({adminUser, onBarLogout}) {
         history.push('/')
     }
 
-    console.log(adminUser)
-
     return (
         <Header>
             {adminUser ? (

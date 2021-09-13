@@ -2,12 +2,12 @@ import { Link } from "react-router-dom"
 import BarCard from "./BarCard"
 import styled from "styled-components";
 
-function BarContainer({ tabsData, newTab, user, bars, handleStartTabClick}) {
+function BarContainer({ user, bars, handleStartTabClick}) {
 
     const barList = bars.map((bar) => (
-        <BarCard key={bar.id} newTab={newTab} user={user} bar={bar} handleStartTabClick={handleStartTabClick}/>
+        <BarCard key={bar.id} user={user} bar={bar} handleStartTabClick={handleStartTabClick}/>
     ))
-        console.log(`BC: ${user}`)
+
     return (
 
         <div>

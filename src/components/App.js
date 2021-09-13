@@ -16,7 +16,6 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [adminUser, setAdminUser] = useState(null)
-  const [custOrders, setCustOrders] = useState([])
   const [testing, setTesting] = useState(null)
 
   const history = useHistory()
@@ -28,10 +27,6 @@ function App() {
 
     function handleBarLogout() {
         setAdminUser(null);
-    }
-
-    function showCustOrders(custData) {
-        console.log(custData)
     }
 
     function test(json) {
@@ -48,7 +43,7 @@ function App() {
             {/* <Title /> */}
             <NavContainer user={user} adminUser={adminUser} onLogout={handleLogout} onBarLogout={handleBarLogout}/>
             <div>
-                <MainContainer test={test} user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser} showCustOrders={showCustOrders}/>
+                <MainContainer test={test} user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser}/>
             </div>
             </AppMain>
         </MainCont>

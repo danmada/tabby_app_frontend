@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-function BarCard({ newTab, user, bar, handleStartTabClick}) {
-
-
-
-    console.log(user)
-    console.log(newTab)
+function BarCard({ bar, handleStartTabClick}) {
 
     const id = bar.id
 

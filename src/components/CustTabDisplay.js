@@ -20,10 +20,7 @@ function CustTabDisplay() {
         })
     }, []);
 
-
-console.log(params.id)
-console.log('Cust Tab Display', isOpen)
-
+    console.log('cust tab:', data)
 
     function handleCloseTabClick() {
         console.log('I was clicked')

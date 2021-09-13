@@ -1,5 +1,5 @@
 import { Route, Switch, useParams, useHistory } from "react-router-dom";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useCallback} from "react";
 import styled from "styled-components";
 import Login from "./Login";
 import CustomerMain from "./CustomerMain";
@@ -11,10 +11,10 @@ import CustMainMenu from "./CustMainMenu";
 import BarMainMenu from "./BarMainMenu";
 import CustomerTabs from "./CustomerTabs";
 
-function MainContainer({user, setUser, adminUser, setAdminUser, showCustOrders, test}) {
+function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     const [bars, setBars] = useState([])
     const [tabs, setTabs] = useState([])
-    // const [custOrders, setCustOrders] = useState([])
+    const [custOrders, setCustOrders] = useState([])
 
     const history = useHistory();
 
@@ -34,24 +34,29 @@ function MainContainer({user, setUser, adminUser, setAdminUser, showCustOrders, 
         });
     }, []);
 
+    function addNewOpenTab(openedTab) {
+        setTabs((tabs) => [...tabs, openedTab])
+    }
+/////////////////
 
-    // function showCustOrders(custData) {
-    //     console.log(custData)
-    //     setCustOrders((custOrders) => [...custOrders, custData])
-    // }
+    //  const showCustOrders = useCallback((indTab) => {
+    //      console.log('new order:', indTab)
+    //     setCustOrders((custOrders) => [...custOrders, indTab])
+    // }, [custOrders])
 
+    // console.log('orders state:', custOrders)
 
-    console.log('main',adminUser)
+    
     
 
 
     return (
         <ListDisplay>
             <Switch>
-                <Route path="/tab/:id" component={() => <BarTabDisplay showCustOrders={showCustOrders}/>}></Route>
+                <Route path="/tab/:id" component={() => <BarTabDisplay />}></Route>
                 <Route path="/customertab/:id" component={() => <CustTabDisplay />}></Route>
                 <Route path="/barlogin" component={() => <BarLogin test={test} adminUser={adminUser} setAdminUser={setAdminUser} />}></Route>
-                <Route path="/main" component={() => <CustomerMain user={user} bars={bars} tabsData={tabs}/>}></Route>
+                <Route path="/main" component={() => <CustomerMain user={user} bars={bars} tabsData={tabs} addNewOpenTab={addNewOpenTab}/>}></Route>
                 <Route path="/barmain/:id" component={() => <BarMain tabs={tabs} adminUser={adminUser}/>}></Route>
                 <Route path="/barmainmenu" component={() => <BarMainMenu adminUser={adminUser}/>}></Route>
                 <Route path="/custmainmenu" component={() => <CustMainMenu />}></Route>

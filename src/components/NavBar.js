@@ -12,7 +12,6 @@ function NavBar({ user, onLogout }) {
         history.push('/')
     }
 
-    console.log(user)
 
 
     return (
