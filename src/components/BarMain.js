@@ -12,9 +12,7 @@ function BarMain({tabs}) {
 
     return (
         <div>
-            <h3>Bar Main</h3>
             <TabContainer tabs={tabs} params={params}/>
-            
         </div>
     )
 }

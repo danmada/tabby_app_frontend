@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
-import TabCard from "./TabCard"
+import styled from "styled-components";
+import TabCard from "./TabCard";
 
 
 function TabContainer({tabs, params}) {
@@ -15,12 +16,19 @@ function TabContainer({tabs, params}) {
     return (
 
         <div>
-            <h1>Tabs List</h1>
+            <Title>Tabs List</Title>
             {tabsList}
         </div>
 
     )
 
 }
+
+//styled components
+
+const Title = styled.h2`
+   font-family: Arial;
+   color: rgb(255, 140, 0);
+`
 
 export default TabContainer

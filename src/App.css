@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -39,4 +39,53 @@
 
 html {
   background-color: rgb(245, 204, 180);
+}
+
+.menu {
+  background-color: white;
+  width: 200pt;
+  border: black;
+  border-style: solid;
+}
+
+.btn {
+  margin: 1rem;
+  text-decoration: none;
+  color: rgb(255, 140, 0);
+  font-family: Arial;
+  padding: 0;
+  height: 60%;
+  background-color: rgb(245, 204, 180);
+}
+
+.btn:hover {
+  background-color: lightblue;
+}
+
+.login {
+  margin: 1rem;
+  text-decoration: none;
+  color: rgb(255, 140, 0);
+  font-family: Arial;
+  padding: 0;
+  height: 60%;
+  background-color: rgb(245, 204, 180);
+  width: 205pt;
+}
+
+.login:hover {
+  background-color: lightblue;
+}
+
+.logout {
+  margin: 1rem;
+  text-decoration: none;
+  color: white;
+  font-family: Arial;
+  padding: 0;
+  height: 60%;
+  background-color: rgb(255, 140, 0);
+}
+.logout:hover {
+  background-color: lightblue;
 }

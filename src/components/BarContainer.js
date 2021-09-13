@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import BarCard from "./BarCard"
+import styled from "styled-components";
 
 function BarContainer({ tabsData, newTab, user, bars, handleStartTabClick}) {
 
@@ -10,11 +11,23 @@ function BarContainer({ tabsData, newTab, user, bars, handleStartTabClick}) {
     return (
 
         <div>
-            <h1>Bars List</h1>
+            <Title>BAR LIST</Title>
+            <P>Click Bar To Start Tab</P>
             {barList}
         </div>
     )
 
 }
+
+// styled components
+
+const Title = styled.h1`
+   font-family: Arial;
+   color: rgb(255, 140, 0);
+`
+const P = styled.p`
+   font-family: Arial;
+   color: rgb(255, 140, 0);
+`
 
 export default BarContainer

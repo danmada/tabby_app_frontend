@@ -1,4 +1,4 @@
-
+import styled from "styled-components";
 
 function AddDrinkDisplay({onAddOrder, params, barId, drinksList}) {
 
@@ -30,13 +30,29 @@ function AddDrinkDisplay({onAddOrder, params, barId, drinksList}) {
             {drinksList.map((drink) => {
             if (drink.bar_id == barId) {
                 return  <div>
-                            <h4>{drink.drink_type}</h4>
-                            <button value={drink.id} onClick={handleAddDrink}>Add</button>
+                            <Items>{drink.drink_type}</Items>
+                            <AddBtn value={drink.id} onClick={handleAddDrink}>➕</AddBtn>
                         </div>
             } 
         })}
         </div>
     )
 }
+
+//styled components
+const Items = styled.h4`
+    font-family: Arial;
+    color: rgb(255, 140, 0); 
+    display: inline-block;
+    text-align: left;
+`
+const AddBtn = styled.button`
+    background-color: white;
+    border: none;
+    display: inline-block;
+    padding-left: 10pt;
+    &:hover {
+        background-color: lightblue;
+`
 
 export default AddDrinkDisplay

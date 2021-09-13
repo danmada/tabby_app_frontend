@@ -6,6 +6,7 @@ import MainContainer from './MainContainer';
 import NavBar from "./NavBar"
 import NavContainer from './NavContainer';
 import Title from './Title';
+import barImg from './assets/bar-background.jpg'
 
 
 
@@ -15,51 +16,72 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [adminUser, setAdminUser] = useState(null)
+  const [custOrders, setCustOrders] = useState([])
+  const [testing, setTesting] = useState(null)
 
   const history = useHistory()
   
 
-        function handleLogout() {
-            setUser(null);
-        }
+    function handleLogout() {
+        setUser(null);
+    }
 
-        function handleBarLogout() {
-            setAdminUser(null);
-        }
+    function handleBarLogout() {
+        setAdminUser(null);
+    }
+
+    function showCustOrders(custData) {
+        console.log(custData)
+    }
+
+    function test(json) {
+        setAdminUser(json)
+    }
 
 
-    console.log(user)
 
 
     return (
-        <div className="App">
+        <MainCont className="App">
+            <Image src={barImg}/>
             <AppMain>
             {/* <Title /> */}
             <NavContainer user={user} adminUser={adminUser} onLogout={handleLogout} onBarLogout={handleBarLogout}/>
-            <MainCont>
-                <MainContainer user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser}/>
-            </MainCont>
+            <div>
+                <MainContainer test={test} user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser} showCustOrders={showCustOrders}/>
+            </div>
             </AppMain>
-        </div>
+        </MainCont>
     );
 }
 
 // styled components
 
 const AppMain = styled.div`
-    width: 50%;
-    height: 100%;
-    // top: 10%;
-    left: 25%;
-    // margin-top: -100px;
-    // margin-left: -100px;
-    margin-top: 0;
+    width: 25%;
+    height: 500pt;
+    margin-left: 33%;
+    margin-top: 5%;
+    margin-bottom: 0;
     border-style: solid;
     background-color: white;
+    position: fixed;
+    
 `
 
 const MainCont = styled.div`
+ 
+`
 
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+    z-index: -1;
+    position: fixed;
+    right: 0%;
+    margin-top: -.5%;
 `
 
 export default App;

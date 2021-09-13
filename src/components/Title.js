@@ -4,7 +4,7 @@ function Title() {
 
     return (
         <div>
-            <AppName>TABBY</AppName>
+            <AppName>TAB</AppName>
         </div>
     )
 }

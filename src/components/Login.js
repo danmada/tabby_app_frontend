@@ -1,5 +1,6 @@
 import { Link, NavLink, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
+import styled from "styled-components";
 
 function Login({ user, setUser}) {
     const [username, setUsername] = useState("");
@@ -30,30 +31,55 @@ function Login({ user, setUser}) {
         history.push('/custmainmenu')
     }
 
-        
-
-        console.log(`Login`, user)
 
             
         
     return (
-        <div>
-            <h4>Login</h4>
-            <form onSubmit={handleCustLogin}>
-                <label>
+        <Main>
+            {/* <h4>Login</h4> */}
+            <LoginForm onSubmit={handleCustLogin}>
+                <Title>
                     Username
                     <br/>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </label>
-                <input type="submit" value="Login!" onClick={()=> setLogin(true)} />
-            </form>
-            <NavLink to="/barlogin">Login as a Bar</NavLink>
+                    <LoginText type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </Title>
+                <input className="login" type="submit" value="Login!" onClick={()=> setLogin(true)} />
+            </LoginForm>
+            <NavLink to="/barlogin" style={linkStyle} >Login as a Bar</NavLink>
             
             
             
-        </div>
+        </Main>
     )
 
 }
+
+// styled components
+const Main = styled.div`
+    display: grid;
+    padding-top: 50pt;
+    height: 100pt;
+`
+const Title = styled.label`
+   font-family: Arial;
+   color: rgb(255, 140, 0);
+`
+const LoginForm = styled.form`
+    display: grid;
+    width: 200pt;
+    padding-left: 20pt;
+    left: 35pt;
+`
+const LoginText = styled.input`
+    width: 200pt;
+`
+const linkStyle = {
+    margin: "1rem",
+    textDecoration: "none",
+    color: 'rgb(255, 140, 0)',
+    fontFamily: "Arial",
+    padding: "0",
+    height: "60%",
+  };
 
 export default Login

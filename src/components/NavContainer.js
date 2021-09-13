@@ -7,7 +7,7 @@ function NavContainer({user, adminUser, onLogout, onBarLogout}) {
     return (
 
         <AppName>
-            <h1>TABBY</h1>
+            <Title>TABBY</Title>
             { user ? <NavBar user={user} onLogout={onLogout}/> : <div></div> }
             
             
@@ -19,8 +19,13 @@ function NavContainer({user, adminUser, onLogout, onBarLogout}) {
 // Styled Components
 
 const AppName = styled.h1`
+    font-family: Arial;
     background-color: rgb(255, 140, 0);
-    margin: 0;
+    margin-top: 0pt;
+    color: white;
+`
+const Title = styled.h1`
+ margin: 0;
 `
 
 export default NavContainer
