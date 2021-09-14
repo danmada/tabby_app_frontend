@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import TabTotal from "./TabTotal";
 
 function CustTabDisplay() {
     const params = useParams()
     const [data, setData] = useState([])
     const [isOpen, setIsOpen] = useState(true)
-    // const [paid, setPaid] = useState(false)
+    const [getPrice, setGetPrice] = useState()
 
     useEffect(() => {
         fetch(`http://localhost:3000/tabs/${params.id}`)
@@ -14,6 +15,7 @@ function CustTabDisplay() {
         .then((json) => {
             setData(json.orders)
             setIsOpen(json)
+            setGetPrice(json.orders)
         })
         .catch((err) => {
             console.log(err);
@@ -45,12 +47,13 @@ function CustTabDisplay() {
     return (
 
         <div>
-            <Title>Customer's Tab</Title>
+            <Title>Ordered:</Title>
             {isOpen.is_open === false ? <h1>Paid!</h1> :
             <div>
                 {data.map((order) => <Items>- {order.drink.drink_type} - ${order.drink.price}</Items>)}
             </div>
             }
+            <TabTotal getPrice={getPrice}/>
             <Btn onClick={handleCloseTabClick}>Close Tab</Btn>
         </div>
     )

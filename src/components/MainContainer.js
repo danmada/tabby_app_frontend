@@ -61,7 +61,7 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
                 <Route path="/barmainmenu" component={() => <BarMainMenu adminUser={adminUser}/>}></Route>
                 <Route path="/custmainmenu" component={() => <CustMainMenu />}></Route>
                 <Route path="/custalltabs" component={() => <CustomerTabs user={user} tabsData={tabs} bars={bars}/>}></Route>
-                <Route path="/" component={() => <Login user={user} setUser={setUser} />}></Route>
+                <Route exact path="/" component={() => <Login user={user} setUser={setUser} />}></Route>
             </Switch>
 
 

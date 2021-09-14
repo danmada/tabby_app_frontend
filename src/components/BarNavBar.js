@@ -17,6 +17,7 @@ function BarNavBar({adminUser, onBarLogout}) {
             {adminUser ? (
                 <div>
                     <Welcome>Welcome, {adminUser.name}!</Welcome>
+                    <button onClick={() => history.goBack()}>Back</button>
                     <Link to="/barmainmenu" style={linkStyle}>Home</Link>
                     <button className="logout" onClick={handleLogout}>Logout</button>
                 </div>

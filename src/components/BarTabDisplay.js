@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Popup from "reactjs-popup"
 import AddDrinkDisplay from './AddDrinkDisplay'
 import TabTotal from "./TabTotal";
 
@@ -14,6 +15,7 @@ const [barId, setBarId] = useState()
 const [isOpen, setIsOpen] = useState(true)
 const params = useParams()
 const [getPrice, setGetPrice] = useState()
+const [toggleList, setToggleList] = useState(true);
 
 
 useEffect(() => {
@@ -38,9 +40,10 @@ function handleDisplayDrinks() {
     .then((json) => {
         setDrinksList(json)
     })
-
+    setToggleList(!toggleList)
 }
 
+console.log(toggleList)
 
 function handleAddNewDrink(newOrder) {
     setIndTab((indTab) => [...indTab, newOrder])
@@ -65,6 +68,7 @@ function handleRemoveOrder(e) {
 }
 
 function handleCloseTabClick() {
+    console.log('I was clicked')
     fetch(`http://localhost:3000/tabs/${params.id}`, {
         method: "PATCH",
         headers: {
@@ -74,10 +78,17 @@ function handleCloseTabClick() {
             is_open: !isOpen.is_open
         }),
     })
-        .then((res) => res.json())
+    .then((r) => {
+        if (r.ok) {
+        r.json().then((isOpen) => {
+            setIsOpen(isOpen);
+        });
+    }})
 }
 
-// console.log('price test:', getPrice)
+function toggleClose() {
+    setToggleList(!toggleList)
+}
 
 
     return (
@@ -94,10 +105,23 @@ function handleCloseTabClick() {
                 )}
                 <TabTotal indTab={indTab} getPrice={getPrice}/>
                 <AddNewBtn onClick={handleCloseTabClick}>Close Tab</AddNewBtn>
-                <AddNewBtn onClick={handleDisplayDrinks}>Add New Item</AddNewBtn>
+                {/* <AddNewBtn onClick={handleDisplayDrinks}>Add New Item</AddNewBtn> */}
             </div>
-            <AddDrinkDisplay onAddOrder={handleAddNewDrink} params={params} barId={barId} drinksList={drinksList}/>
+            <div>
+            {toggleList ? (
+                <div>
+                    <AddNewBtn onClick={handleDisplayDrinks}>Add New Item</AddNewBtn>
+                    {/* <AddDrinkDisplay onAddOrder={handleAddNewDrink} params={params} barId={barId} drinksList={drinksList}/> */}
+                </div>
+            ): (
+                <div>
+                    <AddNewBtn onClick={toggleClose}>X</AddNewBtn>
+                    <AddDrinkDisplay onAddOrder={handleAddNewDrink} params={params} barId={barId} drinksList={drinksList}/>
+                </div>)
+            
 
+            }
+            </div>
         </div>
     )
 
@@ -137,5 +161,13 @@ const RemoveBtn = styled.button`
     &:hover {
         background-color: lightblue;
 `
+const Test = styled.div`
+    background-color: black;
+    border: none;
+    display: inline-block;
+    padding-left: 10pt;
+  
+`
+
 
 export default BarTabDisplay

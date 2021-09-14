@@ -53,7 +53,7 @@ function App() {
 
 const AppMain = styled.div`
     width: 25%;
-    height: 500pt;
+    // height: 500pt;
     margin-left: 33%;
     margin-top: 5%;
     margin-bottom: 0;

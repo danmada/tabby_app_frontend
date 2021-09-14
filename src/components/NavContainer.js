@@ -7,7 +7,7 @@ function NavContainer({user, adminUser, onLogout, onBarLogout}) {
     return (
 
         <AppName>
-            <Title>TABBY</Title>
+            <Title>tabby</Title>
             { user ? <NavBar user={user} onLogout={onLogout}/> : <div></div> }
             
             
@@ -25,7 +25,8 @@ const AppName = styled.h1`
     color: white;
 `
 const Title = styled.h1`
- margin: 0;
+    font-family: 'Space Mono', monospace;
+    margin: 0;
 `
 
 export default NavContainer

@@ -1,24 +1,21 @@
-import { Link, NavLink, useHistory } from "react-router-dom"
+import { Route, Switch, Link, useHistory } from "react-router-dom"
 import React, { useState, useEffect} from "react";
 import styled from "styled-components";
+import CustTabDisplay from "./CustTabDisplay";
 
 function CustomerTabs({ tabsData, user, bars}) {
 
     const [barData, setBarData] = useState(null)
     const history = useHistory()
 
-    function handleSeeOpenTabClick() {
-
-        // history.push(`/customertab/${tabs.id}`)
-
-    }
+    
     
 
     return (
         <Main>
             <Title>Your Open Tabs</Title>
             {tabsData.map(tabs => 
-                tabs.customer_id == user.id ? 
+                tabs.customer_id == user.id && tabs.is_open === true ? 
                 <Link className="btn" to={`/customertab/${tabs.id}`} style={linkStyle}> <h4>{tabs.bar.name}</h4> </Link> 
                 : 
                 console.log('it didnt work'))}
@@ -28,7 +25,7 @@ function CustomerTabs({ tabsData, user, bars}) {
 
 //styled components
 
-const Title = styled.h1`
+const Title = styled.h2`
    font-family: Arial;
    color: rgb(255, 140, 0);
 `

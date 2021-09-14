@@ -1,6 +1,7 @@
 import { Link, NavLink, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components";
+import Testing from "./Testing";
 
 function Login({ user, setUser}) {
     const [username, setUsername] = useState("");
@@ -46,8 +47,6 @@ function Login({ user, setUser}) {
                 <input className="login" type="submit" value="Login!" onClick={()=> setLogin(true)} />
             </LoginForm>
             <NavLink to="/barlogin" style={linkStyle} >Login as a Bar</NavLink>
-            
-            
             
         </Main>
     )

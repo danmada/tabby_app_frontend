@@ -19,6 +19,7 @@ function NavBar({ user, onLogout }) {
             {user ? (
                 <div>
                     <Welcome>Welcome, {user.name}!</Welcome>
+                    <button onClick={() => history.goBack()}>Back</button>
                     <NavLink to="/custmainmenu" style={linkStyle} >Home</NavLink>
                     <button className="logout" onClick={handleLogout}>Logout</button>
                 </div>
