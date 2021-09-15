@@ -4,14 +4,14 @@ import styled from "styled-components";
 import TabCard from "./TabCard";
 
 
+
 function TabContainer({tabs, params}) {
+    
 
-
-   
 
     const tabsList = tabs.map((tab) => {
         if (tab.is_open) {
-         return <TabCard key={tab.id} params={params} tabId={tab.id} custId={tab.customer_id} cust={tab.customer.name} barId={tab.bar_id}/> } 
+        return <TabCard key={tab.id} params={params} tabId={tab.id} custId={tab.customer_id} cust={tab.customer.name} barId={tab.bar_id}/> } 
     })
 
     return (

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TabTotal from "./TabTotal";
@@ -8,6 +8,9 @@ function CustTabDisplay() {
     const [data, setData] = useState([])
     const [isOpen, setIsOpen] = useState(true)
     const [getPrice, setGetPrice] = useState()
+    const [count, setCount] = useState(0)
+    const history = useHistory()
+    
 
     useEffect(() => {
         fetch(`http://localhost:3000/tabs/${params.id}`)
@@ -20,7 +23,11 @@ function CustTabDisplay() {
         .catch((err) => {
             console.log(err);
         })
-    }, []);
+        const timeout = setTimeout(() => {
+            setCount(1);
+          }, 3000);
+        console.log('inside fetch',)
+    }, [count]);
 
     console.log('cust tab:', data)
 
@@ -44,17 +51,32 @@ function CustTabDisplay() {
 
     }
 
+
+  function refreshMaybe() {
+      setCount(count +1)
+  }
+
+
+  console.log('cup', params)
+  console.log('book', data)
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+  
     return (
 
         <div>
             <Title>Ordered:</Title>
+            <button className="refreshBtn" onClick={refreshMaybe}>🔄</button>
             {isOpen.is_open === false ? <h1>Paid!</h1> :
             <div>
-                {data.map((order) => <Items>- {order.drink.drink_type} - ${order.drink.price}</Items>)}
+                {data.map((order) => <Items>- {order.drink.drink_type} - {formatter.format(order.drink.price)}</Items>)}
             </div>
             }
             <TabTotal getPrice={getPrice}/>
-            <Btn onClick={handleCloseTabClick}>Close Tab</Btn>
+            <Btn onClick={handleCloseTabClick}>Close Tab & Pay</Btn>
         </div>
     )
 }
@@ -84,7 +106,8 @@ const Btn = styled.button`
     margin: 4px 2px;
     cursor: pointer;
     &:hover {
-        background-color: lightblue;
+        background-color: rgb(255, 140, 0);
+        color: rgb(245, 204, 180);
 `
 
 export default CustTabDisplay

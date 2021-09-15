@@ -17,7 +17,10 @@ function TabTotal({getPrice}) {
         }
     }
 
-    console.log(typeof test())
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
     
 
 //    const sum = price.reduce(function (a, b) {
@@ -30,7 +33,7 @@ function TabTotal({getPrice}) {
     return (
         <Total>
            
-            <h1> Total: ${test()} </h1> 
+            <h1> Total: ${test()}.00 </h1> 
             
         </Total>
     )

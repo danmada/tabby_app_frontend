@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Popup from "reactjs-popup"
+import ReactLoading from "react-loading";
 import AddDrinkDisplay from './AddDrinkDisplay'
 import TabTotal from "./TabTotal";
 
@@ -16,6 +17,7 @@ const [isOpen, setIsOpen] = useState(true)
 const params = useParams()
 const [getPrice, setGetPrice] = useState()
 const [toggleList, setToggleList] = useState(true);
+const [done, setDone] = useState(undefined);
 
 
 useEffect(() => {
@@ -27,6 +29,7 @@ useEffect(() => {
         setIndTab(drinks)
         setIsOpen(json)
         setGetPrice(drinks)
+        setDone(true)
     })
     .catch((err) => {
         console.log(err);
@@ -90,22 +93,38 @@ function toggleClose() {
     setToggleList(!toggleList)
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
 
     return (
         <div>
             <Title>Tab Display</Title>
             <div>
+            {!done ? (
+        <ReactLoading
+          type={"ThreeDots"}
+          color={"rgb(255, 140, 0)"}
+          height={100}
+          width={100}
+
+        />
+      ) : (
+                <div>
                 {isOpen.is_open === false ? <h1>Paid!</h1> :
                 
                 indTab.map((order) => 
                     <div>
-                    <Items>{order.drink.drink_type} - ${order.drink.price}</Items>
+                    <Items>{order.drink.drink_type} - {formatter.format(order.drink.price)}</Items>
                     <RemoveBtn value={order.id} onClick={handleRemoveOrder}>❌</RemoveBtn>
                     </div>
                 )}
                 <TabTotal indTab={indTab} getPrice={getPrice}/>
                 <AddNewBtn onClick={handleCloseTabClick}>Close Tab</AddNewBtn>
                 {/* <AddNewBtn onClick={handleDisplayDrinks}>Add New Item</AddNewBtn> */}
+                </div>
+      )}
             </div>
             <div>
             {toggleList ? (
@@ -146,7 +165,8 @@ const AddNewBtn = styled.button`
     margin: 4px 2px;
     cursor: pointer;
     &:hover {
-        background-color: lightblue;
+        background-color: rgb(255, 140, 0);
+        color: rgb(245, 204, 180);
 `
 const Items = styled.h4`
     font-family: Arial;

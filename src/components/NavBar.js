@@ -12,15 +12,18 @@ function NavBar({ user, onLogout }) {
         history.push('/')
     }
 
+    function goHomeYoureDrunk() {
+        history.push("/custmainmenu")
+    }
 
 
     return (
         <Header>
             {user ? (
                 <div>
-                    <Welcome>Welcome, {user.name}!</Welcome>
-                    <button onClick={() => history.goBack()}>Back</button>
-                    <NavLink to="/custmainmenu" style={linkStyle} >Home</NavLink>
+                    <Welcome>Welcome, <WelName>{user.name}</WelName></Welcome>
+                    <button className="backBtn" onClick={() => history.goBack()}>Back</button>
+                    <button className="backBtn" onClick={goHomeYoureDrunk}>Home</button>
                     <button className="logout" onClick={handleLogout}>Logout</button>
                 </div>
                     ) : (
@@ -54,9 +57,16 @@ const linkStyle = {
   };
 
   const Welcome = styled.p`
-    font-size: 16pt;
+    font-size: 12pt;
     margin: 0;
+    color: rgb(245, 204, 180);
   `
+
+  const WelName = styled.span`
+  font-size: 12pt;
+  margin: 0;
+  color: white;
+`
 
 
 export default NavBar

@@ -27,6 +27,8 @@ const AppName = styled.h1`
 const Title = styled.h1`
     font-family: 'Space Mono', monospace;
     margin: 0;
+    color: rgb(245, 204, 180);
+    text-shadow: 10px;
 `
 
 export default NavContainer

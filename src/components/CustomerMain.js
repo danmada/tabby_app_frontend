@@ -24,13 +24,13 @@ function CustomerMain({ tabsData, bars, user, addNewOpenTab}) {
             if (r.ok) {
                 r.json().then((openedTab) => {
                     addNewOpenTab(openedTab);
+                    setNewTab(openedTab)
+                    history.push(`/customertab/${openedTab.id}`)
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));
               }
             });
-
-            history.push(`/customertab/${newTab.id}`)
     } 
 
     return (

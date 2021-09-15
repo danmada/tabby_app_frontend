@@ -62,7 +62,7 @@ const Title = styled.label`
 const LoginForm = styled.form`
     display: grid;
     width: 200pt;
-    padding-left: 16%;
+    padding-left: 18%;
     left: 35pt;
 `
 const LoginText = styled.input`

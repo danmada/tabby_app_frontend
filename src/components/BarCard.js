@@ -38,7 +38,8 @@ const Btn = styled.button`
     margin: 4px 2px;
     cursor: pointer;
     &:hover {
-        background-color: lightblue;
+        background-color: rgb(255, 140, 0);
+        color: rgb(245, 204, 180);
 `
 const Rows = styled.div`
     // background-color: rgb(245, 204, 180);

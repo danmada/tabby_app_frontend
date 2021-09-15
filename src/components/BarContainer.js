@@ -11,7 +11,7 @@ function BarContainer({ user, bars, handleStartTabClick}) {
     return (
 
         <div>
-            <Title>BAR LIST</Title>
+            <Title>Bar List</Title>
             <P>Click Bar To Start Tab</P>
             {barList}
         </div>
@@ -21,7 +21,7 @@ function BarContainer({ user, bars, handleStartTabClick}) {
 
 // styled components
 
-const Title = styled.h1`
+const Title = styled.h2`
    font-family: Arial;
    color: rgb(255, 140, 0);
 `

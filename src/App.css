@@ -59,7 +59,8 @@ html {
 }
 
 .btn:hover {
-  background-color: lightblue;
+  background-color: rgb(255, 140, 0);
+  color: rgb(245, 204, 180);
 }
 
 .login {
@@ -74,20 +75,50 @@ html {
 }
 
 .login:hover {
-  background-color: lightblue;
+  background-color: rgb(255, 140, 0);
+  color: rgb(245, 204, 180);
 }
 
 .logout {
+  border: none;
   margin: 1rem;
   text-decoration: none;
-  color: white;
+  color: rgb(245, 204, 180);
   font-family: Arial;
   padding: 0;
   height: 60%;
   background-color: rgb(255, 140, 0);
 }
 .logout:hover {
-  background-color: lightblue;
+  background-color: rgb(245, 204, 180);
+  color: rgb(255, 140, 0);
+}
+
+.backBtn {
+  border: none;
+  margin: 1rem;
+  text-decoration: none;
+  color: rgb(245, 204, 180);
+  font-family: Arial;
+  padding: 0;
+  height: 60%;
+  background-color: rgb(255, 140, 0);
+}
+
+.backBtn:hover {
+  background-color: rgb(245, 204, 180);
+  color: rgb(255, 140, 0);
+}
+
+.refreshBtn {
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  color: rgb(245, 204, 180);
+  font-family: Arial;
+  padding: 0;
+  height: 60%;
+  background-color: white;
 }
 
 /* /////// */

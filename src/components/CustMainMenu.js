@@ -6,9 +6,9 @@ function CustMainMenu() {
     return (
         <Menu>
              <MenuTitle>Main Menu</MenuTitle>
-            <Link to='/custalltabs' style={linkStyle}><h3>See Your Tabs</h3></Link>
+            <Link className="btn" to='/custalltabs' style={linkStyle}><h3>See Your Tabs</h3></Link>
             
-            <Link  to='/main' style={linkStyle}><h3>Find a Bar</h3></Link>
+            <Link className="btn" to='/main' style={linkStyle}><h3>Find a Bar</h3></Link>
         </Menu>
     )
 }
@@ -16,13 +16,13 @@ function CustMainMenu() {
 // styled components
 
 const linkStyle = {
-    margin: "1rem",
-    textDecoration: "none",
-    color: 'rgb(255, 140, 0)',
-    fontFamily: "Arial",
-    padding: "0",
-    height: "60%",
-    backgroundColor: "rgb(245, 204, 180)"
+    // margin: "1rem",
+    // textDecoration: "none",
+    // color: 'rgb(255, 140, 0)',
+    // fontFamily: "Arial",
+    // padding: "0",
+    // height: "60%",
+    // backgroundColor: "rgb(245, 204, 180)"
   };
 
 const Menu = styled.div`

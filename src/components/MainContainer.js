@@ -35,6 +35,7 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     }, []);
 
     function addNewOpenTab(openedTab) {
+        console.log(openedTab)
         setTabs((tabs) => [...tabs, openedTab])
     }
 /////////////////
