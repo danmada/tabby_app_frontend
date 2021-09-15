@@ -14,6 +14,7 @@ import CustomerTabs from "./CustomerTabs";
 function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     const [bars, setBars] = useState([])
     const [tabs, setTabs] = useState([])
+    const [counter, setCounter] = useState(0)
     const [custOrders, setCustOrders] = useState([])
 
     const history = useHistory();
@@ -32,7 +33,7 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
         .then((json) => {
         setTabs(json);
         });
-    }, []);
+    }, [counter]);
 
     function addNewOpenTab(openedTab) {
         console.log(openedTab)
@@ -40,12 +41,10 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     }
 /////////////////
 
-    //  const showCustOrders = useCallback((indTab) => {
-    //      console.log('new order:', indTab)
-    //     setCustOrders((custOrders) => [...custOrders, indTab])
-    // }, [custOrders])
-
-    // console.log('orders state:', custOrders)
+function refresh() {
+    console.log('clicked refresh')
+    setCounter(counter +1)
+}
 
     
     
@@ -54,8 +53,8 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     return (
         <ListDisplay>
             <Switch>
-                <Route path="/tab/:id" component={() => <BarTabDisplay />}></Route>
-                <Route path="/customertab/:id" component={() => <CustTabDisplay />}></Route>
+                <Route path="/tab/:id" component={() => <BarTabDisplay refresh={refresh}/>}></Route>
+                <Route path="/customertab/:id" component={() => <CustTabDisplay refresh={refresh}/>}></Route>
                 <Route path="/barlogin" component={() => <BarLogin test={test} adminUser={adminUser} setAdminUser={setAdminUser} />}></Route>
                 <Route path="/main" component={() => <CustomerMain user={user} bars={bars} tabsData={tabs} addNewOpenTab={addNewOpenTab}/>}></Route>
                 <Route path="/barmain/:id" component={() => <BarMain tabs={tabs} adminUser={adminUser}/>}></Route>

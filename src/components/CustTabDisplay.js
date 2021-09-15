@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TabTotal from "./TabTotal";
 
-function CustTabDisplay() {
+function CustTabDisplay({refresh}) {
     const params = useParams()
     const [data, setData] = useState([])
     const [isOpen, setIsOpen] = useState(true)
@@ -25,11 +25,10 @@ function CustTabDisplay() {
         })
         const timeout = setTimeout(() => {
             setCount(1);
-          }, 3000);
+          }, 500);
         console.log('inside fetch',)
     }, [count]);
 
-    console.log('cust tab:', data)
 
     function handleCloseTabClick() {
         console.log('I was clicked')
@@ -46,9 +45,9 @@ function CustTabDisplay() {
                 if (r.ok) {
                 r.json().then((isOpen) => {
                     setIsOpen(isOpen);
+                    refresh()
                 });
             }})
-
     }
 
 

@@ -77,7 +77,8 @@ const linkStyle = {
     textDecoration: "none",
     color: 'rgb(255, 140, 0)',
     fontFamily: "Arial",
-    padding: "0",
+    // padding: "0",
+    paddingLeft: "3%",
     height: "60%",
   };
 

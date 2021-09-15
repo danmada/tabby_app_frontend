@@ -9,7 +9,7 @@ import TabTotal from "./TabTotal";
 
 
 
-function BarTabDisplay({showCustOrders, custOrders}) {
+function BarTabDisplay({refresh}) {
 const [indTab, setIndTab] = useState([])
 const [drinksList, setDrinksList] = useState([])
 const [barId, setBarId] = useState()
@@ -46,7 +46,6 @@ function handleDisplayDrinks() {
     setToggleList(!toggleList)
 }
 
-console.log(toggleList)
 
 function handleAddNewDrink(newOrder) {
     setIndTab((indTab) => [...indTab, newOrder])
@@ -85,6 +84,7 @@ function handleCloseTabClick() {
         if (r.ok) {
         r.json().then((isOpen) => {
             setIsOpen(isOpen);
+            refresh()
         });
     }})
 }
