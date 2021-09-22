@@ -28,6 +28,30 @@ function App() {
         });
     }, []);
 
+    function handleSubmit(e, username, name, age, email, creditCard, password, passwordConfirmation) {
+        e.preventDefault();
+        fetch("http://localhost:3000/customers", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            name: name,
+            age: age,
+            email: email,
+            credit_card: creditCard,
+            password: password,
+            password_confirmation: passwordConfirmation,
+          }),
+        })
+    .then((r) => {
+        if (r.ok) {
+          r.json().then(user => setUser(user));
+        }
+      });
+      }
+
     function handleLogout() {
         setUser(null);
     }
@@ -50,7 +74,7 @@ function App() {
             {/* <Title /> */}
             <NavContainer user={user} adminUser={adminUser} onLogout={handleLogout} onBarLogout={handleBarLogout}/>
             <div>
-                <MainContainer test={test} user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser}/>
+                <MainContainer handleSignUp={handleSubmit} test={test} user={user} setUser={setUser} adminUser={adminUser} setAdminUser={setAdminUser}/>
             </div>
             </AppMain>
         </MainCont>

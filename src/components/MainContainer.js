@@ -12,7 +12,7 @@ import BarMainMenu from "./BarMainMenu";
 import CustomerTabs from "./CustomerTabs";
 import CustomerSignup from "./CustomerSignup";
 
-function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
+function MainContainer({user, setUser, adminUser, setAdminUser, test, handleSignUp}) {
     const [bars, setBars] = useState([])
     const [tabs, setTabs] = useState([])
     const [counter, setCounter] = useState(0)
@@ -65,7 +65,7 @@ function getItDone() {
                 <Route path="/barmainmenu" component={() => <BarMainMenu adminUser={adminUser}/>}></Route>
                 <Route path="/custmainmenu" component={() => <CustMainMenu />}></Route>
                 <Route path="/custalltabs" component={() => <CustomerTabs user={user} tabsData={tabs} bars={bars}/>}></Route>
-                <Route path="/custsignup" component={() => <CustomerSignup />}></Route>
+                <Route path="/custsignup" component={() => <CustomerSignup handleSignUp={handleSignUp}/>}></Route>
                 <Route exact path="/" component={() => <Login user={user} setUser={setUser} />}></Route>
             </Switch>
 

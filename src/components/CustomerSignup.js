@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState} from "react"
 import styled from "styled-components";
 
-function CustomerSignup({setUser}) {
+function CustomerSignup({handleSignUp}) {
     const [username, setUsername] = useState("");
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
@@ -10,31 +10,35 @@ function CustomerSignup({setUser}) {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        fetch("http://localhost:3000/customers", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-            password_confirmation: passwordConfirmation,
-          }),
-        })
-    .then((r) => {
-        if (r.ok) {
-          r.json().then(user => setUser(user));
-        }
-      });
-      }
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+    //     fetch("http://localhost:3000/customers", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         username: username,
+    //         name: name,
+    //         age: age,
+    //         email: email,
+    //         credit_card: creditCard,
+    //         password: password,
+    //         password_confirmation: passwordConfirmation,
+    //       }),
+    //     })
+    // .then((r) => {
+    //     if (r.ok) {
+    //       r.json().then(user => setUser(user));
+    //     }
+    //   });
+    //   }
 
 
 
 return(
     <div>
-        <SignupForm onSubmit={handleSubmit}>
+        <SignupForm onSubmit={(e) => handleSignUp(e,username, name, age, email, creditCard, password, passwordConfirmation)}>
         <MenuTitle>Sign Up</MenuTitle>
         <Title>Username</Title>
         <input

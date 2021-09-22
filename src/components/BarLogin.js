@@ -1,9 +1,9 @@
-import { Link, NavLink, useHistory } from "react-router-dom"
-import React, { useState, useEffect } from "react"
+import { NavLink, useHistory } from "react-router-dom"
+import React, { useState } from "react"
 import styled from "styled-components";
 
 
-function BarLogin({adminUser, setAdminUser, test}) {
+function BarLogin({test}) {
     const [adminUsername, setAdminUsername] = useState("");
     const [password, setPassword] = useState("");
     const [barLogin, setBarLogin]  = useState('')
@@ -16,10 +16,10 @@ function BarLogin({adminUser, setAdminUser, test}) {
         let API_PATH 
         barLogin?API_PATH = 'barlogin' : API_PATH = 'bars'
         fetch(`http://localhost:3000/${API_PATH}`,{
-          method:'POST',
-          credentials: 'include',
-          headers:{'Content-Type': 'application/json'},
-          body:JSON.stringify({adminUsername, password})
+            method:'POST',
+            credentials: 'include',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({adminUsername, password})
         })
         .then(res => res.json())
         .then(json => {
