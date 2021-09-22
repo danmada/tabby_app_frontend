@@ -11,7 +11,7 @@ function BarContainer({ user, bars, handleStartTabClick}) {
     return (
 
         <div>
-            <Title>Bar List</Title>
+            <Title>Near By Bars 📍</Title>
             <P>Click Bar To Start Tab</P>
             {barList}
         </div>

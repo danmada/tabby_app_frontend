@@ -52,7 +52,7 @@ const AddBtn = styled.button`
     display: inline-block;
     padding-left: 10pt;
     &:hover {
-        background-color: lightblue;
+        background-color: white;
 `
 
 export default AddDrinkDisplay

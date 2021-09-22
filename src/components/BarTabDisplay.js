@@ -9,7 +9,7 @@ import TabTotal from "./TabTotal";
 
 
 
-function BarTabDisplay({refresh}) {
+function BarTabDisplay({refresh, getItDone}) {
 const [indTab, setIndTab] = useState([])
 const [drinksList, setDrinksList] = useState([])
 const [barId, setBarId] = useState()
@@ -50,6 +50,7 @@ function handleDisplayDrinks() {
 function handleAddNewDrink(newOrder) {
     setIndTab((indTab) => [...indTab, newOrder])
     setGetPrice((getPrice) => [...getPrice, newOrder])
+    getItDone()
 }
 
 
@@ -179,7 +180,7 @@ const RemoveBtn = styled.button`
     display: inline-block;
     padding-left: 10pt;
     &:hover {
-        background-color: lightblue;
+        background-color: white;
 `
 const Test = styled.div`
     background-color: black;

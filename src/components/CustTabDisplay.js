@@ -26,12 +26,10 @@ function CustTabDisplay({refresh}) {
         const timeout = setTimeout(() => {
             setCount(1);
           }, 500);
-        console.log('inside fetch',)
     }, [count]);
 
 
     function handleCloseTabClick() {
-        console.log('I was clicked')
         fetch(`http://localhost:3000/tabs/${params.id}`, {
             method: "PATCH",
             headers: {
@@ -55,9 +53,6 @@ function CustTabDisplay({refresh}) {
       setCount(count +1)
   }
 
-
-  console.log('cup', params)
-  console.log('book', data)
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',

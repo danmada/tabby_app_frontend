@@ -20,6 +20,14 @@ function App() {
   const history = useHistory()
   
 
+    useEffect(() => {
+        fetch("/me").then((response) => {
+        if (response.ok) {
+            response.json().then((user) => setUser(user));
+        }
+        });
+    }, []);
+
     function handleLogout() {
         setUser(null);
     }
@@ -37,7 +45,7 @@ function App() {
 
     return (
         <MainCont className="App">
-            <Image src={barImg}/>
+            <Image src={barImg} alt="bar-back"/>
             <AppMain>
             {/* <Title /> */}
             <NavContainer user={user} adminUser={adminUser} onLogout={handleLogout} onBarLogout={handleBarLogout}/>

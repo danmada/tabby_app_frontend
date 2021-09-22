@@ -6,14 +6,13 @@ function BarNavBar({adminUser, onBarLogout}) {
     const history = useHistory()
 
     function handleLogout() {
-        fetch("http://localhost:3000/barlogout", {
-        method: "DELETE",
-        }).then(() => onBarLogout());
+        fetch("http://localhost:3000/barlogout")
+        .then(() => onBarLogout());
         history.push('/')
     }
 
     function goHome() {
-        history.push("/custmainmenu")
+        history.push("/barmainmenu")
     }
 
     return (

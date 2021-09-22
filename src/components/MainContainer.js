@@ -10,6 +10,7 @@ import BarLogin from "./BarLogin";
 import CustMainMenu from "./CustMainMenu";
 import BarMainMenu from "./BarMainMenu";
 import CustomerTabs from "./CustomerTabs";
+import CustomerSignup from "./CustomerSignup";
 
 function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
     const [bars, setBars] = useState([])
@@ -42,18 +43,21 @@ function MainContainer({user, setUser, adminUser, setAdminUser, test}) {
 /////////////////
 
 function refresh() {
-    console.log('clicked refresh')
     setCounter(counter +1)
 }
 
+function getItDone() {
+ console.log('function test')
+}
+
     
-    
+    console.log('test:', tabs)
 
 
     return (
         <ListDisplay>
             <Switch>
-                <Route path="/tab/:id" component={() => <BarTabDisplay refresh={refresh}/>}></Route>
+                <Route path="/tab/:id" component={() => <BarTabDisplay refresh={refresh} getItDone={getItDone}/>}></Route>
                 <Route path="/customertab/:id" component={() => <CustTabDisplay refresh={refresh}/>}></Route>
                 <Route path="/barlogin" component={() => <BarLogin test={test} adminUser={adminUser} setAdminUser={setAdminUser} />}></Route>
                 <Route path="/main" component={() => <CustomerMain user={user} bars={bars} tabsData={tabs} addNewOpenTab={addNewOpenTab}/>}></Route>
@@ -61,6 +65,7 @@ function refresh() {
                 <Route path="/barmainmenu" component={() => <BarMainMenu adminUser={adminUser}/>}></Route>
                 <Route path="/custmainmenu" component={() => <CustMainMenu />}></Route>
                 <Route path="/custalltabs" component={() => <CustomerTabs user={user} tabsData={tabs} bars={bars}/>}></Route>
+                <Route path="/custsignup" component={() => <CustomerSignup />}></Route>
                 <Route exact path="/" component={() => <Login user={user} setUser={setUser} />}></Route>
             </Switch>
 

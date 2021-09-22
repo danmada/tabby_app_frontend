@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 
 function BarLogin({adminUser, setAdminUser, test}) {
-    const [adminUsername, setAdminUsername] = useState("")
+    const [adminUsername, setAdminUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [barLogin, setBarLogin]  = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
@@ -18,7 +19,7 @@ function BarLogin({adminUser, setAdminUser, test}) {
           method:'POST',
           credentials: 'include',
           headers:{'Content-Type': 'application/json'},
-          body:JSON.stringify({adminUsername})
+          body:JSON.stringify({adminUsername, password})
         })
         .then(res => res.json())
         .then(json => {
@@ -27,9 +28,10 @@ function BarLogin({adminUser, setAdminUser, test}) {
                 setErrors(json.error)
             }else {
                 test(json)
+                history.push('/barmainmenu')
+                
             }
         })
-        history.push('/barmainmenu')
     }
 
     return (
@@ -40,8 +42,12 @@ function BarLogin({adminUser, setAdminUser, test}) {
                     Admin Name
                     <br/>
                     <LoginText type="text" value={adminUsername} onChange={(e) => setAdminUsername(e.target.value)} />
+                    Password
+                    <br/>
+                    <LoginText type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Title>
                 <input className="login" type="submit" value="Login!" onClick={()=> setBarLogin(true)} />
+                {errors?errors.map(e => <p>{e}</p>):null}
                 <NavLink to="/" style={linkStyle}> Back </NavLink>
             </LoginForm>
         </Main>

@@ -6,9 +6,8 @@ function NavBar({ user, onLogout }) {
     const history = useHistory()
 
     function handleLogout() {
-        fetch("http://localhost:3000/logout", {
-        method: "DELETE",
-        }).then(() => onLogout());
+        fetch("http://localhost:3000/logout")
+        .then(() => onLogout());
         history.push('/')
     }
 
